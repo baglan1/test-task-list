@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace List.View
 {
+    /// <summary>
+    /// View component of the element.
+    /// </summary>
     public class ElementView : MonoBehaviour
     {
         [SerializeField] TMP_Text textComponent;
@@ -18,7 +21,10 @@ namespace List.View
                 return element;
             }
         }
-
+        
+        /// <summary>
+        /// Sets the model of the view and updates the view.
+        /// </summary>
         public void SetElement(MyElement element)
         {
             var text = element.Text + " : " + element.Number.ToString();
@@ -26,11 +32,6 @@ namespace List.View
             textComponent.text = text;
 
             this.element = element;
-        }
-
-        public Draggable GetDraggable()
-        {
-            return draggable;
         }
     }
 }

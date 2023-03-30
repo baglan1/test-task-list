@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,33 +61,48 @@ namespace List.Model
             this.list = list;
         }
 
-        public void Add(string text, int num)
-        {
-            var newElement = new MyElement(text, num);
-
-            list.Add(newElement);
-        }
-
+        /// <summary>
+        /// Method for adding an element.
+        /// </summary>
+        /// <param name="element">New element.</param>
         public void Add(MyElement element)
         {
+            if (list.Contains(element))
+                throw new ArgumentException($"{nameof(element)} already exists in the list.");
+
             list.Add(element);
         }
 
+        /// <summary>
+        /// Method for removing an element.
+        /// </summary>
+        /// <param name="element">Element that exists in the list.</param>
         public void Remove(MyElement element)
         {
+            if (!list.Contains(element))
+                throw new ArgumentException($"{nameof(element)} does not exist in the list.");
+
             list.Remove(element);
         }
 
+        /// <inheritdoc />
         public IEnumerator<MyElement> GetEnumerator()
         {
             return list.GetEnumerator();
         }
 
+        /// <inheritdoc />
         IEnumerator IEnumerable.GetEnumerator()
         {
             return list.GetEnumerator();
         }
 
+        /// <summary>
+        /// Sorts the list elements by the text.
+        /// </summary>
+        /// <param name="ascending">Flag which indicates whether the elements are sorted
+        /// in ascending order or not.
+        ///</param>
         public void SortByText(bool ascending)
         {
             if (ascending)
@@ -95,6 +111,12 @@ namespace List.Model
                 list = list.OrderByDescending(x => x.Text).ToList();
         }
 
+        /// <summary>
+        /// Sorts the list elements by the number.
+        /// </summary>
+        /// <param name="ascending">Flag which indicates whether the elements are sorted
+        /// in ascending order or not.
+        ///</param>
         public void SortByNumber(bool ascending)
         {
             if (ascending)

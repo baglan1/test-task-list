@@ -36,6 +36,7 @@ namespace List.View
             }
         }
 
+        /// <inheritdoc />
         public void OnBeginDrag(PointerEventData eventData)
         {
             if (moveToPlaceholderCoroutine is not null)
@@ -61,6 +62,7 @@ namespace List.View
             diff = transform.position - new Vector3(eventData.position.x, eventData.position.y, 0f);
         }
 
+        /// <inheritdoc />
         public void OnDrag(PointerEventData eventData)
         {
 
@@ -89,23 +91,36 @@ namespace List.View
             }
         }
 
+        /// <inheritdoc />
         public void OnEndDrag(PointerEventData eventData)
         {
             StartCoroutine(MoveToPlaceholder());
         }
-
+        
+        /// <summary>
+        /// Called when a draggable enters a zone.
+        /// </summary>
+        /// <param name="dropZone">Parent transform where this GO has entered.</param>
         public void EnteringDropZone(Transform dropZone)
         {
             returnToOriginal = false;
             placeholder.transform.SetParent(dropZone);
         }
 
+        /// <summary>
+        /// Called when a draggable exits a zone.
+        /// </summary>
+        /// <param name="dropZone">Parent transform where this GO has exited.</param>
         public void LeavingDropZone(Transform dropZone)
         {
             placeholder.transform.SetParent(originalParent);
             returnToOriginal = true;
         }
 
+        /// <summary>
+        /// Gets the element view of the draggable.
+        /// </summary>
+        /// <returns>Element view of the draggable.</returns>
         public ElementView GetElementView()
         {
             return gameObject.GetComponent<ElementView>();

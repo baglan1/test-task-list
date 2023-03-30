@@ -4,11 +4,16 @@ using UnityEngine.Events;
 
 namespace List.View
 {
+    /// <summary>
+    /// Component for a GO that is a parent for draggables.
+    /// </summary>
     public class DropZone : MonoBehaviour, IDropHandler
     {
+        /// Events that are invoked when a draggable has entered or existed the GO.
         public UnityEvent<ElementView> OnLeaveEvent = new UnityEvent<ElementView>();
         public UnityEvent<ElementView> OnEnterEvent = new UnityEvent<ElementView>();
 
+        /// <inheritdoc />
         public void OnPointerEnter(PointerEventData eventData)
         {
             if (eventData.pointerDrag == null)
@@ -24,6 +29,7 @@ namespace List.View
             }
         }
 
+        /// <inheritdoc />
         public void OnPointerExit(PointerEventData eventData)
         {
 
@@ -40,14 +46,10 @@ namespace List.View
             }
         }
 
+        /// <inheritdoc />
         public void OnDrop(PointerEventData eventData)
         {
-            //Debug.Log (eventData.pointerDrag.name + " was dropped on " + gameObject.name);
-
-            //		Draggable d = eventData.pointerDrag.GetComponent<Draggable>();
-            //if(d != null) {
-            //	d.targetDropZone = this.transform;
-            //		}
+            
         }
     }
 }

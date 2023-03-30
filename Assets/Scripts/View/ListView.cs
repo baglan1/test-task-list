@@ -135,7 +135,6 @@ namespace List.View
         void ExportCancel()
         {
             FileBrowser.DisplayedEntriesFilter -= FileBrowserFilter;
-
         }
 
         void Import(string path)
@@ -143,7 +142,6 @@ namespace List.View
             FileBrowser.DisplayedEntriesFilter -= FileBrowserFilter;
             var jsonString = File.ReadAllText(path);
 
-            // TODO: check file structure
             var tempList = JsonConvert.DeserializeObject<MyList>(jsonString);
 
             SetList(tempList);
