@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+using List.Model;
+using List.View;
 using UnityEngine;
 
 public class DemoScript : MonoBehaviour

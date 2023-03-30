@@ -1,29 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
 using Newtonsoft.Json;
-using UnityEngine;
 
-public class MyElement
+namespace List.Model
 {
-    string text;
+    /// <summary>
+    /// Element of a custom list.
+    /// </summary>
+    public class MyElement
+    {
+        // private fields
+        string text;
+        int number;
 
-    public string Text {
-        get {
-            return this.text;
+        // properties
+        public string Text
+        {
+            get
+            {
+                return this.text;
+            }
         }
-    }
 
-    int number;
-
-    public int Number {
-        get {
-            return number;
+        public int Number
+        {
+            get
+            {
+                return number;
+            }
         }
-    }
 
-    [JsonConstructor]
-    public MyElement(string text, int number) {
-        this.text = text;
-        this.number = number;
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="text">Text of the element.</param>
+        /// <param name="number">Number of the element.</param>
+        [JsonConstructor]
+        public MyElement(string text, int number)
+        {
+            this.text = text;
+            this.number = number;
+        }
     }
 }

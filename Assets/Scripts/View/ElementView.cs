@@ -1,30 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
+using List.Model;
 using TMPro;
 using UnityEngine;
 
-public class ElementView : MonoBehaviour
+namespace List.View
 {
-    [SerializeField] TMP_Text textComponent;
+    public class ElementView : MonoBehaviour
+    {
+        [SerializeField] TMP_Text textComponent;
 
-    [SerializeField] Draggable draggable;
+        [SerializeField] Draggable draggable;
 
-    MyElement element;
-    public MyElement Element {
-        get {
-            return element;
+        MyElement element;
+        public MyElement Element
+        {
+            get
+            {
+                return element;
+            }
         }
-    }
 
-    public void SetElement(MyElement element) {
-        var text = element.Text + " : " + element.Number.ToString();
+        public void SetElement(MyElement element)
+        {
+            var text = element.Text + " : " + element.Number.ToString();
 
-        textComponent.text = text;
+            textComponent.text = text;
 
-        this.element = element;
-    }
+            this.element = element;
+        }
 
-    public Draggable GetDraggable() {
-        return draggable;
+        public Draggable GetDraggable()
+        {
+            return draggable;
+        }
     }
 }
