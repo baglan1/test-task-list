@@ -7,6 +7,9 @@ using SimpleFileBrowser;
 
 namespace List.Utility
 {
+    /// <summary>
+    /// Utility class for importing and exporting a list from and into JSON file.
+    /// </summary>
     public static class JsonImportExportUtility
     {
         public static void ExportList(MyList list)

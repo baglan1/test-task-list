@@ -1,16 +1,14 @@
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using List.Model;
 using List.Utility;
-using Newtonsoft.Json;
-using SimpleFileBrowser;
 using TMPro;
 using UnityEngine;
 
 namespace List.View
 {
+    /// <summary>
+    /// View component of the list.
+    /// </summary>
     public class ListView : MonoBehaviour
     {
         [SerializeField] GameObject elementPrefab;
@@ -28,6 +26,10 @@ namespace List.View
             dropZone.OnLeaveEvent.AddListener(OnExitCallback);
         }
 
+        /// <summary>
+        /// Sets the modeland updates the view.
+        /// </summary>
+        /// <param name="list">Model of the view.</param>
         public void SetList(MyList list)
         {
             RemoveAll();
@@ -64,6 +66,12 @@ namespace List.View
             }
         }
 
+        /// <summary>
+        /// Sorts the list elements by the text.
+        /// </summary>
+        /// <param name="ascending">Flag which indicates whether the elements are sorted
+        /// in ascending order or not.
+        ///</param>
         public void SortByText(bool ascending)
         {
             list.SortByText(ascending);
@@ -71,6 +79,12 @@ namespace List.View
             SetList(list);
         }
 
+        /// <summary>
+        /// Sorts the list elements by the number.
+        /// </summary>
+        /// <param name="ascending">Flag which indicates whether the elements are sorted
+        /// in ascending order or not.
+        ///</param>
         public void SortByNumber(bool ascending)
         {
             list.SortByNumber(ascending);
@@ -110,11 +124,17 @@ namespace List.View
             titleTextComp.text = title;
         }
 
+        /// <summary>
+        /// Called on export button click.
+        /// </summary>
         public void OnExportClick()
         {
             JsonImportExportUtility.ExportList(list);
         }
 
+        /// <summary>
+        /// Called on import button click.
+        /// </summary>
         public void OnImportClick()
         {
             JsonImportExportUtility.ImportList(SetList);
