@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using List.Model;
+using List.Utility;
 using Newtonsoft.Json;
 using SimpleFileBrowser;
 using TMPro;
@@ -111,56 +112,12 @@ namespace List.View
 
         public void OnExportClick()
         {
-            FileBrowser.DisplayedEntriesFilter += FileBrowserFilter;
-            FileBrowser.ShowSaveDialog((paths) => { Export(paths.First()); }, ExportCancel, FileBrowser.PickMode.Files,
-                false, null, list.Name + ".json");
+            JsonImportExportUtility.ExportList(list);
         }
 
         public void OnImportClick()
         {
-            FileBrowser.DisplayedEntriesFilter += FileBrowserFilter;
-            FileBrowser.ShowLoadDialog((paths) => { Import(paths.First()); }, ImportCancel, FileBrowser.PickMode.Files);
-        }
-
-        void Export(string path)
-        {
-            FileBrowser.DisplayedEntriesFilter -= FileBrowserFilter;
-
-            var jsonString = JsonConvert.SerializeObject(list);
-
-            File.WriteAllText(path, jsonString);
-
-        }
-
-        void ExportCancel()
-        {
-            FileBrowser.DisplayedEntriesFilter -= FileBrowserFilter;
-        }
-
-        void Import(string path)
-        {
-            FileBrowser.DisplayedEntriesFilter -= FileBrowserFilter;
-            var jsonString = File.ReadAllText(path);
-
-            var tempList = JsonConvert.DeserializeObject<MyList>(jsonString);
-
-            SetList(tempList);
-        }
-
-        void ImportCancel()
-        {
-            FileBrowser.DisplayedEntriesFilter -= FileBrowserFilter;
-        }
-
-        bool FileBrowserFilter(FileSystemEntry entry)
-        {
-            if (entry.IsDirectory)
-                return true;
-
-            if (entry.Name.EndsWith(".json"))
-                return true;
-
-            return false;
+            JsonImportExportUtility.ImportList(SetList);
         }
     }
 }
